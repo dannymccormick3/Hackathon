@@ -32,9 +32,12 @@ public class Database {
         }).start();
     }
 
-    public Profile getProfile(final int ID)
+    public Profile getProfile(final String ID)
     {
-        return mapper.load(Profile.class, ID);
+        //return mapper.load(Profile.class, ID);
+        Profile p = new Profile("Michael","Pledges suck",19,"male");
+        p.ID = "11";
+        return p;
     }
 
 }

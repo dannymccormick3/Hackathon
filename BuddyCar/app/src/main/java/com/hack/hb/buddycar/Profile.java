@@ -8,7 +8,7 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*;
 @DynamoDBTable(tableName = "Profile")
 public class Profile {
 
-    public int ID;
+    public String ID;
 
     public String name;
 
@@ -45,8 +45,8 @@ public class Profile {
         }
     }
 
-    @DynamoDBIndexRangeKey(attributeName = "ID")
-    public int getID(){
+    @DynamoDBHashKey(attributeName = "ID")
+    public String getID(){
         return ID;
     }
 
