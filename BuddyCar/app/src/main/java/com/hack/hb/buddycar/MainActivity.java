@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.util.UUID;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -52,16 +54,8 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        String uniqueID = UUID.randomUUID().toString();
+        //TODO- if unique ID exists in the database, open the buddy selection, else open edit profile
     }
 
 
