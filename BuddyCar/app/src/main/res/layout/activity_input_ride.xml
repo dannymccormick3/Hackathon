@@ -21,21 +21,19 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="105dp"
             android:inputType="textPersonName"
             android:text="Start City"
             android:ems="10"
-            android:id="@+id/editText8"
-            android:layout_weight="0.04" />
+            android:id="@+id/editText8" />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="150dp"
             android:inputType="textPersonName"
             android:text="End City"
             android:ems="10"
             android:id="@+id/editText9"
-            android:layout_weight="0.09" />
+            android:layout_height="105dp" />
 
         <DatePicker
             android:layout_width="match_parent"
@@ -53,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button8"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:onClick="goBuddySelect"/>
 
             <Button
                 android:text="I am a Driver"
