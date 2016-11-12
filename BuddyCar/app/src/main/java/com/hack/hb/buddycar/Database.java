@@ -34,10 +34,13 @@ public class Database {
 
     public Profile getProfile(final String ID)
     {
-        //return mapper.load(Profile.class, ID);
-        Profile p = new Profile("Michael","Pledges suck",19,"male");
-        p.ID = "11";
-        return p;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mapper.load(Profile.class, ID);
+            }
+        }).start();
+        return new Profile("a","b",1,"c");
     }
 
 }
