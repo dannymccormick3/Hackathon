@@ -6,7 +6,6 @@ package com.hack.hb.buddycar;
 
 public class Profile {
 
-    public int id;
 
     public String name;
 
@@ -16,9 +15,18 @@ public class Profile {
 
     public double rating;
 
-    public Profile (String profName, int idNum) {
-        id = idNum;
+    public String bio;
+
+    public int age;
+
+    public String gender;
+
+
+    public Profile (String profName, String profBio, int profAge, String profGender) {
         name = profName;
+        bio = profBio;
+        age = profAge;
+        gender = profGender;
         stars = 0;
         numRatings = 0;
         rating = 0;
@@ -27,9 +35,13 @@ public class Profile {
     public void modifyRating (int newStars) {
         stars = stars + newStars;
         numRatings++;
-        rating = stars / numRatings;
+        if(numRatings == 0){
+            rating = 0;
+        }else {
+            rating = stars / numRatings;
+        }
     }
 
-}
 
+}
 
