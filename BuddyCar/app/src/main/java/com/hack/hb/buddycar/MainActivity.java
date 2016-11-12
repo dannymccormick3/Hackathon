@@ -1,6 +1,7 @@
 package com.hack.hb.buddycar;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -55,7 +57,11 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         String uniqueID = UUID.randomUUID().toString();
-        //TODO- if unique ID exists in the database, open the buddy selection, else open edit profile
+        //TODO- if unique ID exists in the database, open inputRide, else open edit profile
+
+        //opens inputRide
+        Intent intent = new Intent(this, InputRide.class);
+        startActivity(intent);
     }
 
 

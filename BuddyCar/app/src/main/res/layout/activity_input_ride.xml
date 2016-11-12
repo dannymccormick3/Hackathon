@@ -10,57 +10,63 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.hack.hb.buddycar.InputRide">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:inputType="textPersonName"
-            android:text="Start City"
-            android:ems="10"
-            android:id="@+id/editText8" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:inputType="textPersonName"
-            android:text="End City"
-            android:ems="10"
-            android:id="@+id/editText9"
-            android:layout_height="105dp" />
-
-        <DatePicker
-            android:layout_width="match_parent"
-            android:id="@+id/datePicker"
-            android:layout_height="104dp" />
-
-        <GridLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Grid">
+            android:weightSum="1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
-            <Button
-                android:text="I am a Passenger"
-                android:layout_width="175dp"
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:inputType="textPersonName"
+                android:text="Start City"
+                android:ems="10"
+                android:id="@+id/editText8" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:inputType="textPersonName"
+                android:text="End City"
+                android:ems="10"
+                android:id="@+id/editText9"
+                android:layout_height="105dp" />
+
+            <DatePicker
+                android:layout_width="match_parent"
+                android:id="@+id/datePicker"
+                android:layout_height="wrap_content" />
+
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button8"
-                android:fontFamily="sans-serif-medium"
-                android:textSize="14sp"
-                android:onClick="goBuddySelect"/>
+                android:id="@+id/Grid">
 
-            <Button
-                android:text="I am a Driver"
-                android:layout_height="wrap_content"
-                android:id="@+id/button9"
-                android:layout_width="175dp"
-                android:onClick="goBuddySelect"/>
-        </GridLayout>
+                <Button
+                    android:text="I am a Passenger"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button8"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="14sp"
+                    android:onClick="goBuddySelect"/>
 
-    </LinearLayout>
+                <Button
+                    android:text="I am a Driver"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button9"
+                    android:layout_width="175dp"
+                    android:onClick="goBuddySelect"/>
+            </GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
