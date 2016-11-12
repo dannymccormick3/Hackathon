@@ -29,12 +29,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/Name" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="131dp"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
-                android:id="@+id/imageView" />
-
             <TextView
                 android:text="Bio"
                 android:layout_width="match_parent"
@@ -42,10 +36,16 @@
                 android:id="@+id/Bio" />
 
             <TextView
-                android:text="Sex"
+                android:text="Gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Sex" />
+                android:id="@+id/Gender" />
+
+            <TextView
+                android:text="Age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Age" />
 
             <RatingBar
                 android:layout_width="match_parent"
@@ -53,6 +53,18 @@
                 android:id="@+id/ratingBar"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
                 android:numStars="5" />
+
+            <TextView
+                android:text="NumRatings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/NumRatings" />
+
+            <TextView
+                android:text="Rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Rating" />
 
         </LinearLayout>
     </ScrollView>
