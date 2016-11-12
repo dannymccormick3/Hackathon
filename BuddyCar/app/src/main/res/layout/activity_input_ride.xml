@@ -58,7 +58,8 @@
                 android:text="I am a Driver"
                 android:layout_height="wrap_content"
                 android:id="@+id/button9"
-                android:layout_width="175dp" />
+                android:layout_width="175dp"
+                android:onClick="goBuddySelect"/>
         </GridLayout>
 
     </LinearLayout>
