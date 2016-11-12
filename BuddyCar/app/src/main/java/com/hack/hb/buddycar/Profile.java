@@ -3,7 +3,9 @@ package com.hack.hb.buddycar;
 /**
  * Created by Harrison on 11/12/16.
  */
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*;
 
+@DynamoDBTable(tableName = "Profile")
 public class Profile {
 
     public int ID;
@@ -43,6 +45,45 @@ public class Profile {
         }
     }
 
+    @DynamoDBIndexRangeKey(attributeName = "ID")
+    public int getID(){
+        return ID;
+    }
+
+    @DynamoDBAttribute(attributeName = "name")
+    public String getName(){
+        return name;
+    }
+
+    @DynamoDBAttribute(attributeName = "bio")
+    public String getBio(){
+        return bio;
+    }
+
+    @DynamoDBAttribute(attributeName = "age")
+    public int getAge(){
+        return age;
+    }
+
+    @DynamoDBAttribute(attributeName = "gender")
+    public String getGender(){
+        return gender;
+    }
+
+    @DynamoDBAttribute(attributeName = "stars")
+    public int getStars(){
+        return stars;
+    }
+
+    @DynamoDBAttribute(attributeName = "numRatings")
+    public int getNumRatings(){
+        return numRatings;
+    }
+
+    @DynamoDBAttribute(attributeName = "rating")
+    public Double getRating(){
+        return rating;
+    }
 
 }
 
