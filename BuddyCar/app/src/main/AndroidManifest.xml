@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InputRide"></activity>
+        <activity android:name=".InputRide" />
+        <activity android:name=".BuddySelection"></activity>
     </application>
 
 </manifest>
