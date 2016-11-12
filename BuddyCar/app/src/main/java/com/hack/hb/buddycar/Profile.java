@@ -6,6 +6,7 @@ package com.hack.hb.buddycar;
 
 public class Profile {
 
+    public int ID;
 
     public String name;
 
