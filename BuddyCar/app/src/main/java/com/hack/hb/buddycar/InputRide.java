@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.google.android.gms.appindexing.Action;
@@ -17,6 +18,8 @@ public class InputRide extends AppCompatActivity {
 
     public final static String START_CITY = "com.hack.hb.buddycar.startCity";
     public final static String END_CITY = "com.hack.hb.buddycar.endCity";
+    public final static String DATE = "com.hack.hb.buddycar.myDate";
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -56,10 +59,14 @@ public class InputRide extends AppCompatActivity {
         Intent intent = new Intent(this, BuddySelection.class);
         EditText startCityText = (EditText) findViewById(R.id.editText8);
         EditText endCityText = (EditText) findViewById(R.id.editText9);
+        DatePicker datePickerTxt = (DatePicker) findViewById(R.id.datePicker);
         String startCityStr = startCityText.getText().toString();
         String endCityStr = endCityText.getText().toString();
+        String datePickerStr = datePickerTxt.getMonth() + "-" + datePickerTxt.getDayOfMonth()
+                + "-" + datePickerTxt.getYear();
         intent.putExtra(START_CITY, startCityStr);
         intent.putExtra(END_CITY, endCityStr);
+        intent.putExtra(DATE, datePickerStr);
         startActivity(intent);
     }
 
