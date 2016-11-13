@@ -12,21 +12,21 @@ public class BuddySelection extends AppCompatActivity {
         setContentView(R.layout.activity_buddy_selection);
 
         String rideshareStr = getIntent().getStringExtra("RIDESHARE");
-/*        //RideShare myRideShare = rideshareStr.toString();
+        RideShare myRideShare = new RideShare(rideshareStr);
 
-        //boolean isDriver = myRideShare.isDriverToString == "driver";
+        boolean isDriver = myRideShare.isDriverToString().toLowerCase() == "driver";
 
         if (isDriver) {
-            //Display database stuff that is only riders
+            //TODO-Display database stuff that is only riders
         } else {
-            //display database stuff that is only drivers
+            //TODO-display database stuff that is only drivers
         }
 
 
 
 
 
-*/
+
     }
 
     public boolean ridesAvailable(Profile[] ridesList) {
