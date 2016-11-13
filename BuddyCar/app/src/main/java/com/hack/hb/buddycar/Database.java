@@ -74,9 +74,8 @@ public class Database {
                         .withExpressionAttributeNames(myMap);
                 PaginatedQueryList<RideShare> results = mapper.query(RideShare.class,queryExpression);
                 Intent i = intent;
-
+                i.putExtra("RESULTS",rideshare.listToString(results));
                 a.startActivity(i);
-
             }
         }).start();
     }
