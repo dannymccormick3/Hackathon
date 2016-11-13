@@ -12,11 +12,9 @@ public class Profile {
 
     public String name;
 
-    public int stars;
+    public double rating;
 
     public int numRatings;
-
-    public double rating;
 
     public String bio;
 
@@ -33,19 +31,15 @@ public class Profile {
         bio = profBio;
         age = profAge;
         gender = profGender;
-        stars = 0;
+
         numRatings = 0;
         rating = 0;
     }
 
     public void modifyRating (int newStars) {
-        stars = stars + newStars;
+        rating = rating + newStars;
         numRatings++;
-        if(numRatings == 0){
-            rating = 0;
-        }else {
-            rating = stars / numRatings;
-        }
+        rating = rating / numRatings;
     }
 
     @DynamoDBHashKey(attributeName = "ID")
@@ -93,15 +87,6 @@ public class Profile {
         gender = mGender;
     }
 
-    @DynamoDBAttribute(attributeName = "stars")
-    public int getStars(){
-        return stars;
-    }
-
-    public void setStars(int mStars){
-        stars = mStars;
-    }
-
     @DynamoDBAttribute(attributeName = "numRatings")
     public int getNumRatings(){
         return numRatings;
@@ -120,5 +105,62 @@ public class Profile {
         rating = mRating;
     }
 
+    public String IDtoString(){return ID;}
+
+    public String nameToString(){return name;}
+
+    public String ratingToString(){return rating + "";}
+
+    public String numRatingsToString(){return numRatings+"";}
+
+    public String bioToString(){return bio;}
+
+    public String ageToString(){return age+"";}
+
+    public String genderToString(){return gender;}
+
+    public String toString(){
+        String toBeReturned = IDtoString() + ' ';
+        toBeReturned = toBeReturned + nameToString() + ' ';
+        toBeReturned = toBeReturned + ratingToString() + ' ';
+        toBeReturned = toBeReturned + numRatingsToString() + ' ';
+        toBeReturned = toBeReturned + bioToString() + ' ';
+        toBeReturned = toBeReturned + ageToString() + ' ';
+        toBeReturned = toBeReturned + genderToString();
+        return toBeReturned;
+    }
+
+    //Pre: The data must be in the order as follows, with only spaces in between
+    //ID name rating numRatings bio age gender
+    public Profile fromString(String profileData){
+        int endIDIndex = profileData.indexOf(' ');
+        ID = profileData.substring(0, endIDIndex);
+
+        String endName = profileData.substring(endIDIndex+1, profileData.length());
+        int endNameIndex =endName.indexOf(' ');
+        name = profileData.substring(endIDIndex+1, endNameIndex);
+
+        String endRating = profileData.substring(endNameIndex+1, profileData.length());
+        int endRatingIndex =endRating.indexOf(' ');
+        rating = Double.parseDouble(profileData.substring(endNameIndex+1, endRatingIndex));
+
+        String endNumRatings = profileData.substring(endRatingIndex+1, profileData.length());
+        int endNumRatingsIndex =endNumRatings.indexOf(' ');
+        numRatings = Integer.parseInt(profileData.substring(endRatingIndex+1, endNumRatingsIndex));
+
+        String endBio = profileData.substring(endNumRatingsIndex+1, profileData.length());
+        int endBioIndex =endBio.indexOf(' ');
+        bio = profileData.substring(endNumRatingsIndex+1, endBioIndex);
+
+        String endAge = profileData.substring(endBioIndex+1, profileData.length());
+        int endAgeIndex =endAge.indexOf(' ');
+        age = Integer.parseInt(profileData.substring(endBioIndex+1, endAgeIndex));
+
+        String endGender = profileData.substring(endAgeIndex+1, profileData.length());
+        int endGenderIndex =endGender.indexOf(' ');
+        gender = profileData.substring(endAgeIndex+1, endGenderIndex);
+
+        return this;
+    }
 }
 
