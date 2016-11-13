@@ -14,11 +14,14 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.UUID;
+
 public class InputRide extends AppCompatActivity {
 
     public final static String START_CITY = "com.hack.hb.buddycar.startCity";
     public final static String END_CITY = "com.hack.hb.buddycar.endCity";
     public final static String DATE = "com.hack.hb.buddycar.myDate";
+    public final static String PROFILE = "com.hack.hb.buddycar.profile";
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -33,19 +36,51 @@ public class InputRide extends AppCompatActivity {
         setContentView(R.layout.activity_input_ride);
         final Button b = (Button) findViewById(R.id.button8);
         final Button c = (Button) findViewById(R.id.button9);
-
+        final String profileStr = getIntent().getStringExtra("PROFILE");
+        //Profile profile = fromString(profileStr);
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InputRide.this, BuddySelection.class));
+                //create rideshareIntent intent = new Intent(this, BuddySelection.class);
+                String uniqueID = UUID.randomUUID().toString();
+                //RideShare(uniqueID, profile.getID(), , );
+                //create database object
+                //call d.hook(Rideshare, intent, getApplicationContext());
+
+                Intent intent = new Intent(InputRide.this, BuddySelection.class);
+                EditText startCityText = (EditText) findViewById(R.id.editText8);
+                EditText endCityText = (EditText) findViewById(R.id.editText9);
+                DatePicker datePickerTxt = (DatePicker) findViewById(R.id.datePicker);
+                String startCityStr = startCityText.getText().toString();
+                String endCityStr = endCityText.getText().toString();
+                String datePickerStr = datePickerTxt.getMonth() + "-" + datePickerTxt.getDayOfMonth()
+                        + "-" + datePickerTxt.getYear();
+                intent.putExtra(START_CITY, startCityStr);
+                intent.putExtra(END_CITY, endCityStr);
+                intent.putExtra(DATE, datePickerStr);
+                intent.putExtra(PROFILE, profileStr);
+                startActivity(intent);
             }
         });
 
+        //COPY ABOVE CODE INTO THIS METHOD
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InputRide.this, BuddySelection.class));
+                //create rideshare
+                Intent intent = new Intent(InputRide.this, BuddySelection.class);
+                EditText startCityText = (EditText) findViewById(R.id.editText8);
+                EditText endCityText = (EditText) findViewById(R.id.editText9);
+                DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+                String startCityStr = startCityText.getText().toString();
+                String endCityStr = endCityText.getText().toString();
+                String date = datePicker.toString();
+                intent.putExtra(START_CITY, startCityStr);
+                intent.putExtra(END_CITY, endCityStr);
+                intent.putExtra(DATE, date);
+                intent.putExtra(PROFILE, profileStr);
+                startActivity(intent);
             }
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -59,14 +94,13 @@ public class InputRide extends AppCompatActivity {
         Intent intent = new Intent(this, BuddySelection.class);
         EditText startCityText = (EditText) findViewById(R.id.editText8);
         EditText endCityText = (EditText) findViewById(R.id.editText9);
-        DatePicker datePickerTxt = (DatePicker) findViewById(R.id.datePicker);
+        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
         String startCityStr = startCityText.getText().toString();
         String endCityStr = endCityText.getText().toString();
-        String datePickerStr = datePickerTxt.getMonth() + "-" + datePickerTxt.getDayOfMonth()
-                + "-" + datePickerTxt.getYear();
+        String date = datePicker.toString();
         intent.putExtra(START_CITY, startCityStr);
         intent.putExtra(END_CITY, endCityStr);
-        intent.putExtra(DATE, datePickerStr);
+        intent.putExtra(DATE, date);
         startActivity(intent);
     }
 
@@ -105,5 +139,12 @@ public class InputRide extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+
+    public String dateToString (DatePicker datePicker) {
+        String datePickerStr = datePicker.getMonth() + "-" + datePicker.getDayOfMonth()
+                + "-" + datePicker.getYear();
+        return datePickerStr;
     }
 }

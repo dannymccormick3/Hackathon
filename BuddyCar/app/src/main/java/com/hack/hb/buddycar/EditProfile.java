@@ -13,6 +13,8 @@ import static com.hack.hb.buddycar.R.layout.activity_main;
 
 public class EditProfile extends AppCompatActivity {
 
+    public final static String PROFILE = "com.hack.hb.buddycar.profile";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,10 @@ public class EditProfile extends AppCompatActivity {
                 CharSequence stringId = "Success! Your rating is " + newProf.rating;
                 Snackbar mySnackbar = Snackbar.make(findViewById(R.id.layout_id), stringId, 5);
                 mySnackbar.show();
+
+                Intent intent = new Intent(EditProfile.this, InputRide.class);
+                String profileStr = newProf.toString();
+                intent.putExtra(PROFILE, profileStr);
             }
         });
 
