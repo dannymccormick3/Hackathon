@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         p.ID = "5";
         Database db = new Database(getApplicationContext());
         db.saveProfile(p);
-        Log.e("XXXXXXXXXXXXXXXXXXXXXXX","Test");
 
     }
 

@@ -35,7 +35,7 @@ public class Database {
         }).start();
     }
 
-    public Profile getProfile(final Application a, final String ID, final Intent intent)
+    public void getProfile(final Application a, final String ID, final Intent intent)
     {
         new Thread(new Runnable() {
             @Override
@@ -43,11 +43,10 @@ public class Database {
                 Profile p = mapper.load(Profile.class,ID);
                 Intent i = intent;
                 //TODO - Change p to parsed object
-                i.putExtra("PROFILE","p");
+                i.putExtra("PROFILE",p.toString());
                 a.startActivity(i);
             }
         }).start();
-        return mapper.load(Profile.class,ID);
     }
 
 }

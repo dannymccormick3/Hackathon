@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -38,6 +39,10 @@ public class InputRide extends AppCompatActivity {
         final Button b = (Button) findViewById(R.id.button8);
         final Button c = (Button) findViewById(R.id.button9);
         final String profileStr = getIntent().getStringExtra("PROFILE");
+        if(profileStr == null){
+            Log.e("Bad Log message","I'm a legend");
+        }
+        Log.e("XXXXXXXXXXXXXXX",profileStr);
         final Profile profile = new Profile(profileStr);
 
         b.setOnClickListener(new View.OnClickListener() {
