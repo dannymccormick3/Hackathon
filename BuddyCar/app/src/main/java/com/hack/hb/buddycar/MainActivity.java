@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.UUID;
@@ -62,8 +64,31 @@ public class MainActivity extends AppCompatActivity {
         //TODO- if unique ID exists in the database, open inputRide, else open edit profile
 
         //opens inputRide
-        Intent intent = new Intent(this, InputRide.class);
-        startActivity(intent);
+
+
+        final Button newRideButton = (Button) findViewById(R.id.button5);
+        newRideButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, InputRide.class);
+                startActivity(intent);
+            }
+        });
+
+        final Button viewRidesButton = (Button) findViewById(R.id.button6);
+        viewRidesButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //TODO- make a your rides class and open it here
+            }
+        });
+
+        final Button editProfileButton = (Button) findViewById(R.id.button7);
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, EditProfile.class);
+                startActivity(intent);
+            }
+        });
+
 
         Profile p = new Profile("Michael","Pledges suck",19,"male");
         p.ID = "5";

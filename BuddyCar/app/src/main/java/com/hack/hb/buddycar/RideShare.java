@@ -36,6 +36,29 @@ public class RideShare {
 
     }
 
+    public String myTripIDtoString(){
+        return myTripID;
+    }
+    public String FK_IDtoString(){
+        return FK_ID;
+    }
+    public String startToString(){
+        return myStartCity;
+    }
+    public String endToString(){
+        return myEndCity;
+    }
+    public String isDriverToString(){
+        if(myIsDriver){
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
+    public String dateToString(){
+        return myDate;
+    }
+
 
 
 
