@@ -34,7 +34,7 @@ public class RideShare {
         myIsDriver = isDriver;
         myDate = date;
     }
-    
+
     //Alt Constructor
     //Pre: The data must be in the order as follows, with only spaces in between
     //myTripId FK_ID myStartCity myEndCity isDriverToString() myDate
@@ -78,9 +78,9 @@ public class RideShare {
     }
     public String isDriverToString(){
         if(myIsDriver){
-            return "yes";
+            return "driver";
         }else{
-            return "no";
+            return "passenger";
         }
     }
     public String dateToString(){
