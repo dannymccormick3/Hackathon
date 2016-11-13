@@ -33,7 +33,6 @@ public class RideShare {
         myEndCity = endCity;
         myIsDriver = isDriver;
         myDate = date;
-
     }
 
     public String myTripIDtoString(){
@@ -59,6 +58,11 @@ public class RideShare {
         return myDate;
     }
 
+    public String toString(){
+        String toReturn = myTripID + ' ' + FK_ID + ' ' + myStartCity;
+        toReturn = toReturn + ' ' + myEndCity + isDriverToString() + ' ' + myDate;
+        return toReturn;
+    }
 
 
 
