@@ -8,6 +8,10 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.*;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*;
 import com.amazonaws.services.dynamodbv2.model.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Danny on 11/12/2016.
  */
@@ -35,6 +39,15 @@ public class Database {
         }).start();
     }
 
+    public void saveRideShare(final RideShare r){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mapper.save(r);
+            }
+        }).start();
+    }
+
     public void getProfile(final Application a, final String ID, final Intent intent)
     {
         new Thread(new Runnable() {
@@ -45,6 +58,25 @@ public class Database {
                 //TODO - Change p to parsed object
                 i.putExtra("PROFILE",p.toString());
                 a.startActivity(i);
+            }
+        }).start();
+    }
+
+    public void getRideShares(final Application a, final Intent intent, final RideShare rideshare){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Map<String,String> myMap = new HashMap<String, String>();
+                myMap.put("myStartCity",rideshare.myStartCity);
+                myMap.put("myEndCity",rideshare.myEndCity);
+
+                DynamoDBQueryExpression queryExpression = new DynamoDBQueryExpression()
+                        .withExpressionAttributeNames(myMap);
+                PaginatedQueryList<RideShare> results = mapper.query(RideShare.class,queryExpression);
+                Intent i = intent;
+
+                a.startActivity(i);
+
             }
         }).start();
     }
