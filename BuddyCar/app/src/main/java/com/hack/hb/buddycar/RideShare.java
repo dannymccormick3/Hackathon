@@ -34,6 +34,35 @@ public class RideShare {
         myIsDriver = isDriver;
         myDate = date;
     }
+    
+    //Alt Constructor
+    //Pre: The data must be in the order as follows, with only spaces in between
+    //myTripId FK_ID myStartCity myEndCity isDriverToString() myDate
+    RideShare(String rsData){
+        int endtripIDIndex = rsData.indexOf(' ');
+        myTripID = rsData.substring(0, endtripIDIndex);
+
+        String IDnum = rsData.substring(endtripIDIndex+1, rsData.length()-1);
+        int IDnumIndex =IDnum.indexOf(' ');
+        FK_ID =rsData.substring(endtripIDIndex+1, IDnumIndex);
+
+        String startCity = rsData.substring(IDnumIndex+1, rsData.length()-1);
+        int startCityIndex =startCity.indexOf(' ');
+        myStartCity = rsData.substring(IDnumIndex+1, startCityIndex);
+
+        String endCity = rsData.substring(startCityIndex+1, rsData.length()-1);
+        int endCityIndex =endCity.indexOf(' ');
+        myEndCity = rsData.substring(startCityIndex+1, endCityIndex);
+
+        String isDriver = rsData.substring(endCityIndex+1, rsData.length()-1);
+        int isDriverIndex =isDriver.indexOf(' ');
+        String checkDriver = rsData.substring(endCityIndex+1, isDriverIndex);
+        myIsDriver = checkDriver.equals("passenger");
+
+        String date = rsData.substring(isDriverIndex+1, rsData.length()-1);
+        int dateIndex =date.indexOf(' ');
+        myDate = rsData.substring(isDriverIndex+1, dateIndex);
+    }
 
     public String myTripIDtoString(){
         return myTripID;
