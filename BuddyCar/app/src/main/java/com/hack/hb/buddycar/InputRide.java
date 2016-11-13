@@ -37,14 +37,15 @@ public class InputRide extends AppCompatActivity {
         final Button b = (Button) findViewById(R.id.button8);
         final Button c = (Button) findViewById(R.id.button9);
         final String profileStr = getIntent().getStringExtra("PROFILE");
-        //Profile profile = fromString(profileStr);
+        final Profile profile = new Profile(profileStr);
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //create rideshareIntent intent = new Intent(this, BuddySelection.class);
                 String uniqueID = UUID.randomUUID().toString();
-                //RideShare(uniqueID, profile.getID(), , );
+
+
                 //create database object
                 //call d.hook(Rideshare, intent, getApplicationContext());
 
@@ -56,6 +57,9 @@ public class InputRide extends AppCompatActivity {
                 String endCityStr = endCityText.getText().toString();
                 String datePickerStr = datePickerTxt.getMonth() + "-" + datePickerTxt.getDayOfMonth()
                         + "-" + datePickerTxt.getYear();
+
+                RideShare(uniqueID, profile.getID(), startCityStr ,endCityStr, true, datePickerStr);
+
                 intent.putExtra(START_CITY, startCityStr);
                 intent.putExtra(END_CITY, endCityStr);
                 intent.putExtra(DATE, datePickerStr);
@@ -75,7 +79,7 @@ public class InputRide extends AppCompatActivity {
                 DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
                 String startCityStr = startCityText.getText().toString();
                 String endCityStr = endCityText.getText().toString();
-                String date = datePicker.toString();
+                String date = dateToString(datePicker);
                 intent.putExtra(START_CITY, startCityStr);
                 intent.putExtra(END_CITY, endCityStr);
                 intent.putExtra(DATE, date);
@@ -97,7 +101,7 @@ public class InputRide extends AppCompatActivity {
         DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
         String startCityStr = startCityText.getText().toString();
         String endCityStr = endCityText.getText().toString();
-        String date = datePicker.toString();
+        String date = dateToString(datePicker);
         intent.putExtra(START_CITY, startCityStr);
         intent.putExtra(END_CITY, endCityStr);
         intent.putExtra(DATE, date);
@@ -143,8 +147,7 @@ public class InputRide extends AppCompatActivity {
 
 
     public String dateToString (DatePicker datePicker) {
-        String datePickerStr = datePicker.getMonth() + "-" + datePicker.getDayOfMonth()
+        return datePicker.getMonth() + "-" + datePicker.getDayOfMonth()
                 + "-" + datePicker.getYear();
-        return datePickerStr;
     }
 }
