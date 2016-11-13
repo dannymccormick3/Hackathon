@@ -1,5 +1,7 @@
 package com.hack.hb.buddycar;
+import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Regions;
@@ -13,6 +15,7 @@ public class Database {
     CognitoCachingCredentialsProvider credentialsProvider;
     AmazonDynamoDBClient dbClient;
     DynamoDBMapper mapper;
+    Profile p = null;
     public Database(Context context){
         credentialsProvider = new CognitoCachingCredentialsProvider(
                 context,
@@ -32,15 +35,19 @@ public class Database {
         }).start();
     }
 
-    public Profile getProfile(final String ID)
+    public Profile getProfile(final Application a, final String ID, final Intent intent)
     {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mapper.load(Profile.class, ID);
+                Profile p = mapper.load(Profile.class,ID);
+                Intent i = intent;
+                //TODO - Change p to parsed object
+                i.putExtra("PROFILE","p");
+                a.startActivity(i);
             }
         }).start();
-        return new Profile("a","b",1,"c");
+        return mapper.load(Profile.class,ID);
     }
 
 }

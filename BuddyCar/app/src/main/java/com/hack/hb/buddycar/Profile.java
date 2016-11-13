@@ -24,6 +24,9 @@ public class Profile {
 
     public String gender;
 
+    public Profile(){
+
+    }
 
     public Profile (String profName, String profBio, int profAge, String profGender) {
         name = profName;
@@ -50,9 +53,17 @@ public class Profile {
         return ID;
     }
 
+    public void setID(String mID){
+        ID = mID;
+    }
+
     @DynamoDBAttribute(attributeName = "name")
     public String getName(){
         return name;
+    }
+
+    public void setName(String mName){
+        name = mName;
     }
 
     @DynamoDBAttribute(attributeName = "bio")
@@ -60,9 +71,17 @@ public class Profile {
         return bio;
     }
 
+    public void setBio(String mBio){
+        bio = mBio;
+    }
+
     @DynamoDBAttribute(attributeName = "age")
     public int getAge(){
         return age;
+    }
+
+    public void setAge(int mAge){
+        age = mAge;
     }
 
     @DynamoDBAttribute(attributeName = "gender")
@@ -70,9 +89,17 @@ public class Profile {
         return gender;
     }
 
+    public void setGender(String mGender){
+        gender = mGender;
+    }
+
     @DynamoDBAttribute(attributeName = "stars")
     public int getStars(){
         return stars;
+    }
+
+    public void setStars(int mStars){
+        stars = mStars;
     }
 
     @DynamoDBAttribute(attributeName = "numRatings")
@@ -80,9 +107,17 @@ public class Profile {
         return numRatings;
     }
 
+    public void setNumRatings(int mNumRatings){
+        numRatings = mNumRatings;
+    }
+
     @DynamoDBAttribute(attributeName = "rating")
     public Double getRating(){
         return rating;
+    }
+
+    public void setRating(Double mRating){
+        rating = mRating;
     }
 
 }

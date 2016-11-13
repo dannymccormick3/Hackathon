@@ -1,6 +1,7 @@
 package com.hack.hb.buddycar;
 
 import android.app.ActionBar;
+import android.app.Application;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -64,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InputRide.class);
         startActivity(intent);
 
+        Profile p = new Profile("Michael","Pledges suck",19,"male");
+        p.ID = "5";
+        Database db = new Database(getApplicationContext());
+        db.saveProfile(p);
+        Log.e("XXXXXXXXXXXXXXXXXXXXXXX","Test");
 
     }
 
