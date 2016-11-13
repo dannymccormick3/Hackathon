@@ -22,6 +22,7 @@ public class InputRide extends AppCompatActivity {
     public final static String END_CITY = "com.hack.hb.buddycar.endCity";
     public final static String DATE = "com.hack.hb.buddycar.myDate";
     public final static String PROFILE = "com.hack.hb.buddycar.profile";
+    public final static String RIDESHARE = "com.hack.hb.buddycar.rideshare";
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -42,28 +43,36 @@ public class InputRide extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //create rideshareIntent intent = new Intent(this, BuddySelection.class);
+
                 String uniqueID = UUID.randomUUID().toString();
 
 
-                //create database object
-                //call d.hook(Rideshare, intent, getApplicationContext());
-
                 Intent intent = new Intent(InputRide.this, BuddySelection.class);
                 EditText startCityText = (EditText) findViewById(R.id.editText8);
-                EditText endCityText = (EditText) findViewById(R.id.editText9);
+                EditText endCityText = (EditText) (findViewById(R.id.editText9));
                 DatePicker datePickerTxt = (DatePicker) findViewById(R.id.datePicker);
                 String startCityStr = startCityText.getText().toString();
+                startCityStr = startCityStr.toLowerCase();
                 String endCityStr = endCityText.getText().toString();
-                String datePickerStr = datePickerTxt.getMonth() + "-" + datePickerTxt.getDayOfMonth()
-                        + "-" + datePickerTxt.getYear();
+                endCityStr = endCityStr.toLowerCase();
 
-                RideShare(uniqueID, profile.getID(), startCityStr ,endCityStr, true, datePickerStr);
+                String datePickerStr = dateToString(datePickerTxt);
+
+                RideShare rideShare = new RideShare(uniqueID, profile.getID(), startCityStr, endCityStr,
+                        datePickerStr, false);
+                String rideShareStr = rideShare.toString();
 
                 intent.putExtra(START_CITY, startCityStr);
                 intent.putExtra(END_CITY, endCityStr);
                 intent.putExtra(DATE, datePickerStr);
                 intent.putExtra(PROFILE, profileStr);
+
+                //RIDESHARE IS THE KEY
+                intent.putExtra(RIDESHARE, rideShareStr);
+
+                //create database object
+                //call d.hook(Rideshare, intent, getApplicationContext());
+
                 startActivity(intent);
             }
         });
@@ -72,21 +81,40 @@ public class InputRide extends AppCompatActivity {
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //create rideshare
+
+                String uniqueID = UUID.randomUUID().toString();
+
+
                 Intent intent = new Intent(InputRide.this, BuddySelection.class);
                 EditText startCityText = (EditText) findViewById(R.id.editText8);
-                EditText endCityText = (EditText) findViewById(R.id.editText9);
-                DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+                EditText endCityText = (EditText) (findViewById(R.id.editText9));
+                DatePicker datePickerTxt = (DatePicker) findViewById(R.id.datePicker);
                 String startCityStr = startCityText.getText().toString();
+                startCityStr = startCityStr.toLowerCase();
                 String endCityStr = endCityText.getText().toString();
-                String date = dateToString(datePicker);
+                endCityStr = endCityStr.toLowerCase();
+
+                String datePickerStr = dateToString(datePickerTxt);
+
+                RideShare rideShare = new RideShare(uniqueID, profile.getID(), startCityStr, endCityStr,
+                        datePickerStr, false);
+                String rideShareStr = rideShare.toString();
+
                 intent.putExtra(START_CITY, startCityStr);
                 intent.putExtra(END_CITY, endCityStr);
-                intent.putExtra(DATE, date);
+                intent.putExtra(DATE, datePickerStr);
                 intent.putExtra(PROFILE, profileStr);
+
+                //RIDESHARE is the key to everything
+                intent.putExtra(RIDESHARE, rideShareStr);
+
+                //create database object
+                //call d.hook(Rideshare, intent, getApplicationContext());
+
                 startActivity(intent);
             }
         });
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
