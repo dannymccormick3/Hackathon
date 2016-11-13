@@ -25,8 +25,8 @@ public class Profile {
     public Profile(){
 
     }
-
-    public Profile (String profName, String profBio, int profAge, String profGender) {
+    //Constructor
+    Profile(String profName, String profBio, int profAge, String profGender) {
         name = profName;
         bio = profBio;
         age = profAge;
@@ -35,6 +35,39 @@ public class Profile {
         numRatings = 0;
         rating = 0;
     }
+
+    //Alt Constructor
+    //Pre: The data must be in the order as follows, with only spaces in between
+    //ID name rating numRatings bio age gender
+    Profile(String profileData){
+        int endIDIndex = profileData.indexOf(' ');
+        ID = profileData.substring(0, endIDIndex);
+
+        String endName = profileData.substring(endIDIndex+1, profileData.length()-1);
+        int endNameIndex =endName.indexOf(' ');
+        name = profileData.substring(endIDIndex+1, endNameIndex);
+
+        String endRating = profileData.substring(endNameIndex+1, profileData.length()-1);
+        int endRatingIndex =endRating.indexOf(' ');
+        rating = Double.parseDouble(profileData.substring(endNameIndex+1, endRatingIndex));
+
+        String endNumRatings = profileData.substring(endRatingIndex+1, profileData.length()-1);
+        int endNumRatingsIndex =endNumRatings.indexOf(' ');
+        numRatings = Integer.parseInt(profileData.substring(endRatingIndex+1, endNumRatingsIndex));
+
+        String endBio = profileData.substring(endNumRatingsIndex+1, profileData.length()-1);
+        int endBioIndex =endBio.indexOf(' ');
+        bio = profileData.substring(endNumRatingsIndex+1, endBioIndex);
+
+        String endAge = profileData.substring(endBioIndex+1, profileData.length()-1);
+        int endAgeIndex =endAge.indexOf(' ');
+        age = Integer.parseInt(profileData.substring(endBioIndex+1, endAgeIndex));
+
+        String endGender = profileData.substring(endAgeIndex+1, profileData.length()-1);
+        int endGenderIndex =endGender.indexOf(' ');
+        gender = profileData.substring(endAgeIndex+1, endGenderIndex);
+    }
+
 
     public void modifyRating (int newStars) {
         rating = rating + newStars;
@@ -130,37 +163,5 @@ public class Profile {
         return toBeReturned;
     }
 
-    //Pre: The data must be in the order as follows, with only spaces in between
-    //ID name rating numRatings bio age gender
-    public Profile fromString(String profileData){
-        int endIDIndex = profileData.indexOf(' ');
-        ID = profileData.substring(0, endIDIndex);
-
-        String endName = profileData.substring(endIDIndex+1, profileData.length());
-        int endNameIndex =endName.indexOf(' ');
-        name = profileData.substring(endIDIndex+1, endNameIndex);
-
-        String endRating = profileData.substring(endNameIndex+1, profileData.length());
-        int endRatingIndex =endRating.indexOf(' ');
-        rating = Double.parseDouble(profileData.substring(endNameIndex+1, endRatingIndex));
-
-        String endNumRatings = profileData.substring(endRatingIndex+1, profileData.length());
-        int endNumRatingsIndex =endNumRatings.indexOf(' ');
-        numRatings = Integer.parseInt(profileData.substring(endRatingIndex+1, endNumRatingsIndex));
-
-        String endBio = profileData.substring(endNumRatingsIndex+1, profileData.length());
-        int endBioIndex =endBio.indexOf(' ');
-        bio = profileData.substring(endNumRatingsIndex+1, endBioIndex);
-
-        String endAge = profileData.substring(endBioIndex+1, profileData.length());
-        int endAgeIndex =endAge.indexOf(' ');
-        age = Integer.parseInt(profileData.substring(endBioIndex+1, endAgeIndex));
-
-        String endGender = profileData.substring(endAgeIndex+1, profileData.length());
-        int endGenderIndex =endGender.indexOf(' ');
-        gender = profileData.substring(endAgeIndex+1, endGenderIndex);
-
-        return this;
-    }
 }
 
