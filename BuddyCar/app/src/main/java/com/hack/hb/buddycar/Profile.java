@@ -27,6 +27,7 @@ public class Profile {
     }
     //Constructor
     Profile(String profName, String profBio, int profAge, String profGender) {
+        // ID = profId;     String profId,
         name = profName;
         bio = profBio;
         age = profAge;

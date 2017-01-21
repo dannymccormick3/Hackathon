@@ -11,19 +11,6 @@ public class BuddySelection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buddy_selection);
 
-        String rideshareStr = getIntent().getStringExtra("RIDESHARE");
-        RideShare myRideShare = new RideShare(rideshareStr);
-
-        boolean isDriver = myRideShare.isDriverToString().toLowerCase() == "driver";
-
-        if (isDriver) {
-            //TODO-Display database stuff that is only riders
-        } else {
-            //TODO-display database stuff that is only drivers
-        }
-
-
-
 
 
 

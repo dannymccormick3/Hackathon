@@ -26,6 +26,7 @@ public class EditProfile extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+
                 EditText txtName = (EditText) findViewById(R.id.name);
                 EditText txtBio = (EditText) findViewById(R.id.bio);
                 EditText txtAge = (EditText) findViewById(R.id.age);
@@ -33,6 +34,7 @@ public class EditProfile extends AppCompatActivity {
 
                 int age = Integer.parseInt(txtAge.getText().toString());
 
+                //String ID = EditText.getText().toString();
                 String name = txtName.getText().toString();
                 String bio = txtBio.getText().toString();
                 String gender = txtGender.getText().toString();
@@ -44,9 +46,10 @@ public class EditProfile extends AppCompatActivity {
                 Snackbar mySnackbar = Snackbar.make(findViewById(R.id.layout_id), stringId, 5);
                 mySnackbar.show();
 
-                Intent intent = new Intent(EditProfile.this, InputRide.class);
+                Intent intent = new Intent(EditProfile.this, MainActivity.class);
                 String profileStr = newProf.toString();
                 intent.putExtra(PROFILE, profileStr);
+                startActivity(intent);
             }
         });
 

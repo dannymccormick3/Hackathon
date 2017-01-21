@@ -50,13 +50,19 @@
             android:inputType="number"
             android:ems="10"
             android:id="@+id/age"
-            android:text="Age" />
+            android:hint="Age" />
 
         <Button
             android:text="Submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -27,6 +27,8 @@ import android.widget.TextView;
 
 import java.util.UUID;
 
+import static android.os.Build.ID;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -48,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent (MainActivity.this, InputRide.class);
-        startActivity(intent);
+//        Intent intent = new Intent (MainActivity.this, InputRide.class);
+//        startActivity(intent);
 
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -79,9 +81,11 @@ public class MainActivity extends AppCompatActivity {
         final Button viewRidesButton = (Button) findViewById(R.id.button6);
         viewRidesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //TODO- make a your rides class and open it here
+                Intent intent = new Intent(MainActivity.this, BuddySelection.class);
+                startActivity(intent);
             }
         });
+
 
         final Button editProfileButton = (Button) findViewById(R.id.button7);
         editProfileButton.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Profile p = new Profile("Michael","Pledges suck",19,"male");
-        p.ID = "5";
-        Database db = new Database(getApplicationContext());
-        db.saveProfile(p);
+//        Profile p = new Profile("Michael","Pledges suck",19,"male");
+//        p.ID = "5";
+//        Database db = new Database(getApplicationContext());
+//        db.saveProfile(p);
 
     }
 

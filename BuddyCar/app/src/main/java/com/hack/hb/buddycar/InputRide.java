@@ -23,6 +23,7 @@ public class InputRide extends AppCompatActivity {
     public final static String END_CITY = "com.hack.hb.buddycar.endCity";
     public final static String DATE = "com.hack.hb.buddycar.myDate";
     public final static String PROFILE = "com.hack.hb.buddycar.profile";
+    public final static String UNIQUEID = "com.hack.hb.buddycar.uniqueid";
     public final static String RIDESHARE = "com.hack.hb.buddycar.rideshare";
 
     /**
@@ -38,50 +39,50 @@ public class InputRide extends AppCompatActivity {
         setContentView(R.layout.activity_input_ride);
         final Button b = (Button) findViewById(R.id.button8);
         final Button c = (Button) findViewById(R.id.button9);
-        String profileString = getIntent().getStringExtra("PROFILE");
-        if(profileString == null) {
-            Log.e("Bad Log message", "I'm a legend");
-
-            profileString = "";
-        }
-        final String profileStr = profileString;
-        Log.e("XXXXXXXXXXXXXXX",profileStr);
-        final Profile profile = new Profile(profileStr);
+//        String profileString = getIntent().getStringExtra("PROFILE");
+//        if(profileString == null) {
+//            Log.e("Bad Log message", "I'm a legend");
+//            profileString = "";
+//        }
+//        final String profileStr = profileString;
+//        Log.e("XXXXXXXXXXXXXXX",profileStr);
+//        final Profile profile = new Profile(profileStr);
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String uniqueID = UUID.randomUUID().toString();
-
-
-                Intent intent = new Intent(InputRide.this, BuddySelection.class);
-                EditText startCityText = (EditText) findViewById(R.id.editText8);
-                EditText endCityText = (EditText) (findViewById(R.id.editText9));
-                DatePicker datePickerTxt = (DatePicker) findViewById(R.id.datePicker);
-                String startCityStr = startCityText.getText().toString();
-                startCityStr = startCityStr.toLowerCase();
-                String endCityStr = endCityText.getText().toString();
-                endCityStr = endCityStr.toLowerCase();
-
-                String datePickerStr = dateToString(datePickerTxt);
-
-                RideShare rideShare = new RideShare(uniqueID, profile.getID(), startCityStr, endCityStr,
-                        datePickerStr, false);
-                String rideShareStr = rideShare.toString();
-
-                intent.putExtra(START_CITY, startCityStr);
-                intent.putExtra(END_CITY, endCityStr);
-                intent.putExtra(DATE, datePickerStr);
-                intent.putExtra(PROFILE, profileStr);
-
-                //RIDESHARE IS THE KEY
-                intent.putExtra(RIDESHARE, rideShareStr);
-
-                //create database object
-                //call d.hook(Rideshare, intent, getApplicationContext());
-
-                startActivity(intent);
+//                String tripID = UUID.randomUUID().toString();
+//
+//
+//                Intent intent = new Intent(InputRide.this, BuddySelection.class);
+//                EditText startCityText = (EditText) findViewById(R.id.editText8);
+//                EditText endCityText = (EditText) (findViewById(R.id.editText9));
+//                DatePicker datePickerTxt = (DatePicker) findViewById(R.id.datePicker);
+//                String startCityStr = startCityText.getText().toString();
+//                startCityStr = startCityStr.toLowerCase();
+//                String endCityStr = endCityText.getText().toString();
+//                endCityStr = endCityStr.toLowerCase();
+//
+//                String datePickerStr = dateToString(datePickerTxt);
+//
+//                RideShare rideShare = new RideShare(tripID, profile.getID(), startCityStr, endCityStr,
+//                        datePickerStr, false);
+//                String rideShareStr = rideShare.toString();
+//
+//                intent.putExtra(START_CITY, startCityStr);
+//                intent.putExtra(END_CITY, endCityStr);
+//                intent.putExtra(DATE, datePickerStr);
+//                intent.putExtra(UNIQUEID, tripID);
+//                intent.putExtra(PROFILE, profileStr);
+//
+//                //RIDESHARE IS THE KEY
+//                intent.putExtra(RIDESHARE, rideShareStr);
+//
+//                //create database object
+//                //call d.hook(Rideshare, intent, getApplicationContext());
+//
+//                startActivity(intent);
             }
         });
 
@@ -90,36 +91,36 @@ public class InputRide extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String uniqueID = UUID.randomUUID().toString();
-
-
-                Intent intent = new Intent(InputRide.this, BuddySelection.class);
-                EditText startCityText = (EditText) findViewById(R.id.editText8);
-                EditText endCityText = (EditText) (findViewById(R.id.editText9));
-                DatePicker datePickerTxt = (DatePicker) findViewById(R.id.datePicker);
-                String startCityStr = startCityText.getText().toString();
-                startCityStr = startCityStr.toLowerCase();
-                String endCityStr = endCityText.getText().toString();
-                endCityStr = endCityStr.toLowerCase();
-
-                String datePickerStr = dateToString(datePickerTxt);
-
-                RideShare rideShare = new RideShare(uniqueID, profile.getID(), startCityStr, endCityStr,
-                        datePickerStr, false);
-                String rideShareStr = rideShare.toString();
-
-                intent.putExtra(START_CITY, startCityStr);
-                intent.putExtra(END_CITY, endCityStr);
-                intent.putExtra(DATE, datePickerStr);
-                intent.putExtra(PROFILE, profileStr);
-
-                //RIDESHARE is the key to everything
-                intent.putExtra(RIDESHARE, rideShareStr);
-
-                //create database object
-                //call d.hook(Rideshare, intent, getApplicationContext());
-
-                startActivity(intent);
+//                String uniqueID = UUID.randomUUID().toString();
+//
+//
+//                Intent intent = new Intent(InputRide.this, BuddySelection.class);
+//                EditText startCityText = (EditText) findViewById(R.id.editText8);
+//                EditText endCityText = (EditText) (findViewById(R.id.editText9));
+//                DatePicker datePickerTxt = (DatePicker) findViewById(R.id.datePicker);
+//                String startCityStr = startCityText.getText().toString();
+//                startCityStr = startCityStr.toLowerCase();
+//                String endCityStr = endCityText.getText().toString();
+//                endCityStr = endCityStr.toLowerCase();
+//
+//                String datePickerStr = dateToString(datePickerTxt);
+//
+//                RideShare rideShare = new RideShare(uniqueID, profile.getID(), startCityStr, endCityStr,
+//                        datePickerStr, false);
+//                String rideShareStr = rideShare.toString();
+//
+//                intent.putExtra(START_CITY, startCityStr);
+//                intent.putExtra(END_CITY, endCityStr);
+//                intent.putExtra(DATE, datePickerStr);
+//                intent.putExtra(PROFILE, profileStr);
+//
+//                //RIDESHARE is the key to everything
+//                intent.putExtra(RIDESHARE, rideShareStr);
+//
+//                //create database object
+//                //call d.hook(Rideshare, intent, getApplicationContext());
+//
+//                startActivity(intent);
             }
         });
 
