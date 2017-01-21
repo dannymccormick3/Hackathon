@@ -38,11 +38,14 @@ public class InputRide extends AppCompatActivity {
         setContentView(R.layout.activity_input_ride);
         final Button b = (Button) findViewById(R.id.button8);
         final Button c = (Button) findViewById(R.id.button9);
-        final String profileStr = getIntent().getStringExtra("PROFILE");
-            if(profileStr == null){
-            Log.e("Bad Log message","I'm a legend");
+        String profileString = getIntent().getStringExtra("PROFILE");
+        if(profileString == null) {
+            Log.e("Bad Log message", "I'm a legend");
+
+            profileString = "";
         }
-        else Log.e("XXXXXXXXXXXXXXX",profileStr);
+        final String profileStr = profileString;
+        Log.e("XXXXXXXXXXXXXXX",profileStr);
         final Profile profile = new Profile(profileStr);
 
         b.setOnClickListener(new View.OnClickListener() {
