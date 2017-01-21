@@ -42,7 +42,7 @@ public class Database {
 
                 } else {
                     // Insert failed
-                    Log.e("FAILURE",exception.toString());
+                    Log.e("FAILURE",exception.getCause().toString());
                 }
             }
         });
@@ -111,4 +111,3 @@ public class Database {
         return null;
     }
 }
-

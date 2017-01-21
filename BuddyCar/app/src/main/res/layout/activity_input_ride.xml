@@ -27,17 +27,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="105dp"
                 android:inputType="textPersonName"
-                android:text="Start City"
                 android:ems="10"
-                android:id="@+id/editText8" />
+                android:id="@+id/editText8"
+                android:hint="Start City" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:inputType="textPersonName"
-                android:text="End City"
                 android:ems="10"
                 android:id="@+id/editText9"
-                android:layout_height="105dp" />
+                android:layout_height="105dp"
+                android:hint="End City" />
 
             <DatePicker
                 android:layout_width="match_parent"

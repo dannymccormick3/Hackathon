@@ -50,9 +50,8 @@ public class RideShare {
     }
 
     //ctor
-    public RideShare (String tripId, String DriverID,String RiderID, String startCity, String endCity, String date,
-                      boolean isDriver) {
-        ID = tripId;
+    public RideShare (String DriverID,String RiderID, String startCity, String endCity, String date) {
+        //ID = tripId;
         myDriverID = DriverID;
         myRiderID = RiderID;
         myStartCity = startCity;

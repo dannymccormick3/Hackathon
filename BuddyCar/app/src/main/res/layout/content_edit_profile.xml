@@ -23,9 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
             android:ems="10"
-            android:id="@+id/name" />
+            android:id="@+id/name"
+            android:hint="Name" />
 
         <EditText
             android:layout_width="match_parent"
@@ -33,16 +33,16 @@
             android:inputType="text"
             android:ems="10"
             android:id="@+id/bio"
-            android:text="Short Bio"
-            android:layout_weight="0.35" />
+            android:layout_weight="0.35"
+            android:hint="Short Bio" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Gender"
             android:ems="10"
-            android:id="@+id/gender" />
+            android:id="@+id/gender"
+            android:hint="Gender" />
 
         <EditText
             android:layout_width="match_parent"
@@ -57,12 +57,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -86,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button allRidesButton = (Button) findViewById(R.id.button2);
+        allRidesButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BuddySelection.class);
+                startActivity(intent);
+            }
+        });
+
 
         final Button editProfileButton = (Button) findViewById(R.id.button7);
         editProfileButton.setOnClickListener(new View.OnClickListener() {
