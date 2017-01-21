@@ -19,6 +19,7 @@ public class Database {
     private MobileServiceClient mClient;
     private Context context;
 
+    //Database db = new Database(this);
     public Database(Context mContext){
         context = mContext;
         try {
@@ -29,6 +30,8 @@ public class Database {
         }
     }
 
+    //Rideshare ride = new RideShare(...)
+    //db.saveRideShare(ride);
     public void saveRideShare(RideShare r){
         mClient.getTable(RideShare.class).insert(r, new TableOperationCallback<RideShare>() {
             @Override
@@ -96,12 +99,11 @@ public class Database {
 
 
     //Gets all RideShares where DriverID or RiderID equals id
-    public Profile getMyRideShares(String id){
+    public List<RideShare> getMyRideShares(String id){
         try {
-            List<Profile> mProfiles = mClient.getTable(Profile.class)
+            return mClient.getTable(RideShare.class)
                     .where().field("DriverID").eq(val(id))
                     .or().field("RiderID").eq(val(id)).execute().get();
-            return mProfiles.iterator().next();
         }
         catch (Exception ex){
             Log.e("EX",ex.toString());
