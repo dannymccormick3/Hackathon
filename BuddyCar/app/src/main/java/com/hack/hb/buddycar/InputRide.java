@@ -39,10 +39,10 @@ public class InputRide extends AppCompatActivity {
         final Button b = (Button) findViewById(R.id.button8);
         final Button c = (Button) findViewById(R.id.button9);
         final String profileStr = getIntent().getStringExtra("PROFILE");
-        if(profileStr == null){
+            if(profileStr == null){
             Log.e("Bad Log message","I'm a legend");
         }
-        Log.e("XXXXXXXXXXXXXXX",profileStr);
+        else Log.e("XXXXXXXXXXXXXXX",profileStr);
         final Profile profile = new Profile(profileStr);
 
         b.setOnClickListener(new View.OnClickListener() {
