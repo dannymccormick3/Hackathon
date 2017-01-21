@@ -1,83 +1,70 @@
 package com.hack.hb.buddycar;
-import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
+import android.util.Log;
 
-import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.*;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*;
-import com.amazonaws.services.dynamodbv2.model.*;
+import com.microsoft.windowsazure.mobileservices.*;
+import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
+import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
+import static com.microsoft.windowsazure.mobileservices.table.query.QueryOperations.val;
 
 /**
  * Created by Danny on 11/12/2016.
  */
 public class Database {
-    CognitoCachingCredentialsProvider credentialsProvider;
-    AmazonDynamoDBClient dbClient;
-    DynamoDBMapper mapper;
-    Profile p = null;
-    public Database(Context context){
-        credentialsProvider = new CognitoCachingCredentialsProvider(
-                context,
-                "us-east-1:d28ef10c-29bc-42c9-ab9d-c58833c28336", // Identity Pool ID
-                Regions.US_EAST_1 // Region
-        );
-        dbClient = new AmazonDynamoDBAsyncClient(credentialsProvider);
-        mapper = new DynamoDBMapper(dbClient);
+
+
+    private MobileServiceClient mClient;
+    private Context context;
+
+    public Database(Context mContext){
+        context = mContext;
+        try {
+            mClient = new MobileServiceClient("https://buddycar.azurewebsites.net", mContext);
+        }
+        catch (Exception ex){
+            Log.e("EXCEPTION",ex.toString());
+        }
     }
 
-    public void saveProfile(final Profile p){
-        new Thread(new Runnable() {
+    public void saveRideShare(RideShare r){
+        mClient.getTable(RideShare.class).insert(r, new TableOperationCallback<RideShare>() {
             @Override
-            public void run() {
-                mapper.save(p);
+            public void onCompleted(RideShare entity, Exception exception, ServiceFilterResponse response) {
+                if (exception == null) {
+                    // Insert succeeded
+                    Log.d("SUCCESS","SUCCESS");
+
+                } else {
+                    // Insert failed
+                    Log.e("FAILURE",exception.toString());
+                }
             }
-        }).start();
+        });
     }
 
-    public void saveRideShare(final RideShare r){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mapper.save(r);
-            }
-        }).start();
+    public RideShare getRideShareByID(String id){
+        try {
+            List<RideShare> mRides = mClient.getTable(RideShare.class).where().field("id").eq(val(id)).execute().get();
+            return mRides.iterator().next();
+        }
+        catch (Exception ex){
+            Log.e("EX",ex.toString());
+        }
+        return new RideShare();
     }
 
-    public void getProfile(final Application a, final String ID, final Intent intent)
-    {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Profile p = mapper.load(Profile.class,ID);
-                Intent i = intent;
-                //TODO - Change p to parsed object
-                i.putExtra("PROFILE",p.toString());
-                a.startActivity(i);
-            }
-        }).start();
+    public List<RideShare> getAllRideShares(){
+        try {
+            List<RideShare> mRides = mClient.getTable(RideShare.class).execute().get();
+            return mRides;
+        }
+        catch (Exception ex){
+            Log.e("EX",ex.toString());
+        }
+        return null;
     }
-
-    public void getRideShares(final Application a, final Intent intent, final RideShare rideshare){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Map<String,String> myMap = new HashMap<String, String>();
-                myMap.put("myStartCity",rideshare.myStartCity);
-                myMap.put("myEndCity",rideshare.myEndCity);
-
-                DynamoDBQueryExpression queryExpression = new DynamoDBQueryExpression()
-                        .withExpressionAttributeNames(myMap);
-                PaginatedQueryList<RideShare> results = mapper.query(RideShare.class,queryExpression);
-                Intent i = intent;
-                i.putExtra("RESULTS",rideshare.listToString(results));
-                a.startActivity(i);
-            }
-        }).start();
-    }
-
 }
+

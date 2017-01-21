@@ -3,9 +3,7 @@ package com.hack.hb.buddycar;
 /**
  * Created by Harrison on 11/12/16.
  */
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*;
 
-@DynamoDBTable(tableName = "Profile")
 public class Profile {
 
     public String ID;
@@ -76,7 +74,6 @@ public class Profile {
         rating = rating / numRatings;
     }
 
-    @DynamoDBHashKey(attributeName = "ID")
     public String getID(){
         return ID;
     }
@@ -85,7 +82,6 @@ public class Profile {
         ID = mID;
     }
 
-    @DynamoDBAttribute(attributeName = "name")
     public String getName(){
         return name;
     }
@@ -94,7 +90,6 @@ public class Profile {
         name = mName;
     }
 
-    @DynamoDBAttribute(attributeName = "bio")
     public String getBio(){
         return bio;
     }
@@ -103,7 +98,6 @@ public class Profile {
         bio = mBio;
     }
 
-    @DynamoDBAttribute(attributeName = "age")
     public int getAge(){
         return age;
     }
@@ -112,7 +106,6 @@ public class Profile {
         age = mAge;
     }
 
-    @DynamoDBAttribute(attributeName = "gender")
     public String getGender(){
         return gender;
     }
@@ -121,7 +114,6 @@ public class Profile {
         gender = mGender;
     }
 
-    @DynamoDBAttribute(attributeName = "numRatings")
     public int getNumRatings(){
         return numRatings;
     }
@@ -130,7 +122,6 @@ public class Profile {
         numRatings = mNumRatings;
     }
 
-    @DynamoDBAttribute(attributeName = "rating")
     public Double getRating(){
         return rating;
     }

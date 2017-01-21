@@ -1,10 +1,6 @@
 package com.hack.hb.buddycar;
 
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBAttribute;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBHashKey;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBIndexHashKey;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
+
 
 import java.util.ArrayList;
 
@@ -12,12 +8,13 @@ import java.util.ArrayList;
  * Created by michaelriley on 11/12/16.
  */
 
-@DynamoDBTable(tableName = "RideShare")
 public class RideShare {
 
     public String ID;
 
-    public String FK_ID;
+    public String myDriverID;
+
+    public String myRiderID;
 
     public String myStartCity;
 
@@ -25,50 +22,48 @@ public class RideShare {
 
     public String myDate;
 
-    boolean myIsDriver;
-
-    @DynamoDBHashKey(attributeName = "ID")
     public String getID()
     {
         return ID;
     }
 
-    @DynamoDBAttribute(attributeName = "FK_ID")
-    public String getFK_ID(){
-        return FK_ID;
+    public String getDriverID(){
+        return myDriverID;
     }
 
-    @DynamoDBIndexHashKey(attributeName = "myStartCity")
+    public String getRiderID() {return myRiderID;}
+
     public String getMyStartCity(){
         return myStartCity;
     }
 
-    @DynamoDBIndexHashKey(attributeName = "myEndCity")
     public String getMyEndCity(){
         return myEndCity;
     }
 
-    @DynamoDBAttribute(attributeName = "myDate")
     public String getMyDate(){
         return myDate;
     }
 
+    public RideShare(){
+
+    }
 
     //ctor
-    public RideShare (String tripId, String FK_Id, String startCity, String endCity, String date,
+    public RideShare (String tripId, String DriverID,String RiderID, String startCity, String endCity, String date,
                       boolean isDriver) {
         ID = tripId;
-        FK_ID = FK_Id;
+        myDriverID = DriverID;
+        myRiderID = RiderID;
         myStartCity = startCity;
         myEndCity = endCity;
-        myIsDriver = isDriver;
         myDate = date;
     }
 
     //Alt Constructor
     //Pre: The data must be in the order as follows, with only spaces in between
     //myTripId FK_ID myStartCity myEndCity isDriverToString() myDate
-    RideShare(String rsData){
+    /*RideShare(String rsData){
         int endtripIDIndex = rsData.indexOf("?-?");
         ID = rsData.substring(0, endtripIDIndex);
 
@@ -141,5 +136,5 @@ public class RideShare {
         }
 
         return myRides;
-    }
+    }*/
 }
