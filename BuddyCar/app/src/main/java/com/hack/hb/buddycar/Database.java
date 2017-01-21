@@ -53,13 +53,55 @@ public class Database {
         catch (Exception ex){
             Log.e("EX",ex.toString());
         }
-        return new RideShare();
+        return null;
     }
 
     public List<RideShare> getAllRideShares(){
         try {
             List<RideShare> mRides = mClient.getTable(RideShare.class).execute().get();
             return mRides;
+        }
+        catch (Exception ex){
+            Log.e("EX",ex.toString());
+        }
+        return null;
+    }
+
+    public void saveProfile(Profile p){
+        mClient.getTable(Profile.class).insert(p, new TableOperationCallback<Profile>() {
+            @Override
+            public void onCompleted(Profile entity, Exception exception, ServiceFilterResponse response) {
+                if (exception == null) {
+                    // Insert succeeded
+                    Log.d("SUCCESS","SUCCESS");
+
+                } else {
+                    // Insert failed
+                    Log.e("FAILURE",exception.toString());
+                }
+            }
+        });
+    }
+
+    public Profile getProfileByID(String id){
+        try {
+            List<Profile> mProfiles = mClient.getTable(Profile.class).where().field("id").eq(val(id)).execute().get();
+            return mProfiles.iterator().next();
+        }
+        catch (Exception ex){
+            Log.e("EX",ex.toString());
+        }
+        return null;
+    }
+
+
+    //Gets all RideShares where DriverID or RiderID equals id
+    public Profile getMyRideShares(String id){
+        try {
+            List<Profile> mProfiles = mClient.getTable(Profile.class)
+                    .where().field("DriverID").eq(val(id))
+                    .or().field("RiderID").eq(val(id)).execute().get();
+            return mProfiles.iterator().next();
         }
         catch (Exception ex){
             Log.e("EX",ex.toString());
